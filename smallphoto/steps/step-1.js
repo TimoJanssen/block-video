@@ -5,15 +5,17 @@ function init(step) {
 	console.log(parser);
 
 	var dataRequest = Wizard.config.baseUrl + 'site/data.json?page='
-			+ parser.pathname + '&' + location.hash.substring(1);// 'edit-block-0-type-text';
+			+ parser.pathname + '&' + location.hash.substring(1);// 'edit-block-0-type-icon';
 
 	promise.get(dataRequest).then(function(error, text, xhr) {
 		if (error) {
-			alert('Error ' + xhr.status);
-			return;
+//			/alert('Error ' + xhr.status);
+			//return;
+			dataRequest = "";
+		}else{
+			console.log("result block data json : " + text);
+			var json = JSON.parse(text);
 		}
-		console.log("result block data json : " + text);
-		var json = JSON.parse(text);
 		getData(dataRequest);
 	});
 
@@ -22,7 +24,7 @@ function init(step) {
 
 		var req = dataRequest;
 		if(req == ""){
-			req = Wizard.config.baseUrl + 'site/blocks/block-video/text/data/text.json';
+			req = Wizard.config.baseUrl + 'site/blocks/block-video/smallphoto/data/basic.json';
 		}
 		promise
 				.get(req)
@@ -32,9 +34,14 @@ function init(step) {
 								alert('Error ' + xhr.status);
 								return;
 							}
-							var starting_value = JSON.parse(text).data;
+							
+							var starting_value = "";
+							try{
+								starting_value = JSON.parse(text).data;
+							}catch(e){}
+							
 
-							if(typeof(starting_value) == "undefined"){
+							if(typeof(starting_value) == "undefined" || starting_value == ""){
 								starting_value = JSON.parse(text);
 							}
 							// Initialize the editor
@@ -45,20 +52,19 @@ function init(step) {
 								// The schema for the editor
 								schema : {
 									type : "object",
-									title : "Text",
-									  "properties": {
-									    "title": {
-									      "type": "string",
-									      "default": "nieuwe title",
-									    },
-									    "text" : {
-									    	  "type": "string",
-									    	  "format": "html",
-									    	  "options": {
-									    	    "wysiwyg": true
-									    	  }
-									    	}
-									  }
+									title : "Photo",
+									"properties" : {
+										"photourl" : {
+											"type" : "url"
+										},
+										"content" : {					    	
+										  	"type": "string",
+								    	  	"format": "html",
+								    	  	"options": {
+								    	    "wysiwyg": true
+								    	  	}
+										}
+									}
 								},
 								// Seed the form with a starting value
 								startval : starting_value,

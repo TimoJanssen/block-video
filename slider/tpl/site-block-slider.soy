@@ -1,0 +1,28 @@
+{namespace site.block}
+/**
+ * Says hello to the world.
+ * @param url1
+ * @param url2
+ * @param url3
+ * @param url4
+ */
+{template .slider}
+<aside role="complementary" class="css-slideshow block slider" data-type="slider">
+   	<figure class="flexslider">
+         <ul class="slides">
+            <li>
+  	    	    <img src="{$url1}" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="{$url2}" />
+  	    		</li>
+  	    		<li>
+  	    	   	<img src="{$url3}" />
+  	    		</li>
+  	    		<li>
+  	    	 	<img src="{$url4}" />
+  	    		</li>
+          </ul>
+    </figure>
+</aside>
+{/template}

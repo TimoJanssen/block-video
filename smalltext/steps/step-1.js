@@ -5,7 +5,7 @@ function init(step) {
 	console.log(parser);
 
 	var dataRequest = Wizard.config.baseUrl + 'site/data.json?page='
-			+ parser.pathname + '&' + location.hash.substring(1);// 'edit-block-0-type-text';
+			+ parser.pathname + '&' + location.hash.substring(1);// 'edit-block-0-type-smalltext';
 
 	promise.get(dataRequest).then(function(error, text, xhr) {
 		if (error) {
@@ -22,7 +22,7 @@ function init(step) {
 
 		var req = dataRequest;
 		if(req == ""){
-			req = Wizard.config.baseUrl + 'site/blocks/block-video/text/data/text.json';
+			req = Wizard.config.baseUrl + 'site/blocks/block-video/smalltext/data/smalltext.json';
 		}
 		promise
 				.get(req)

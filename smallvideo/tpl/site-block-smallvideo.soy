@@ -1,0 +1,13 @@
+{namespace site.block}
+/**
+ * @param url
+ * @param content
+ * @param title
+ */
+{template .smallvideo}
+    <figure class="block smallvideo" data-type="video" data-size="300x430" style="width:300px;height:168px;overflow:hidden;background-color:#59595B;">
+      <iframe width="300" height="168" src="{$url}" frameborder="0" allowfullscreen></iframe>
+      <h1>{$title}</h1>
+      <p>{$content|noAutoescape}</p>
+    </figure>
+{/template}

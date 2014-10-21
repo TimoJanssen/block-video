@@ -1,0 +1,12 @@
+{namespace site.block}
+/**
+ * Says hello to the world.
+ * @param photourl
+ * @param content
+ */
+{template .photo}
+   	<figure class="block smallphoto">
+       <img style="height:300px; width:300px" src="{$photourl}" /> 
+        <p>{$content|noAutoescape}</p>
+    </figure>
+{/template}
